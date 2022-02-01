@@ -9,9 +9,6 @@ let optn = document.getElementById('startGame');
 
 const BOMB_NUMBER = 16;
 
-
-
-
 //Crea event listener del click su pulsante Play
 optn.addEventListener('click', function(){
 
@@ -38,10 +35,39 @@ optn.addEventListener('click', function(){
     let bombsPosition = bombNumbers();
 
 
+    function clicked(){
+        let boxContent = parseInt(this.innerHTML); 
+
+        if(bombsPosition.includes(boxContent)){
+           
+            terminaGioco();
+        
+        }
+        else{
+            this.classList.add("bkgBlue");        
+        }
+        
+        this.removeEventListener('click', clicked);
+        
+    }
+
+    function terminaGioco(){
+
+        let bomba = document.getElementsByClassName("box");
+        
+        for(let i = 0; i < bomba.length; i++){
+            if(bombsPosition.includes(parseInt(bomba[i].innerText))){
+                bomba[i].classList.add("bkgRed")
+            }
+        }    
+        
+    }
+
     //Questa Funzione crea la singola cella e ne assegna la classe box
     const createBox = () => {
     //Crea il div della singola casella
-        const box = document.createElement("div");   
+        const box = document.createElement("div");  
+        box.addEventListener('click', clicked) 
         //Aggiunge classe "box" a box
         box.classList.add('box');
         //Ritorna il div box con classe box
@@ -77,30 +103,6 @@ optn.addEventListener('click', function(){
             const box = createBox();
             box.innerText = parseInt(i);
             
-            
-            //Assegna background color a seconda se la casella ha la bomba o meno
-            box.addEventListener('click', function(){
-                let clicks = 0;
-                let boxContent = parseInt(box.innerHTML); 
-
-                console.log(boxContent);
-               
-                if(bombsPosition.includes(boxContent)){
-                    box.classList.add("bkgRed");
-                }
-                else{
-                    box.classList.add("bkgBlue");
-                    clicks += 1;
-                }
-                
-            });
-
-            function clicked(){
-                box.classList.add("clicked");
-                box.removeEventListener('click', playGroundMaker);
-                
-            }
-
             if(cellsNumber == 100){
                 box.classList.add('game100');
                 box.classList.remove('game81');
@@ -119,7 +121,6 @@ optn.addEventListener('click', function(){
                 box.classList.add('game49');
             }
             
-            
             playGround.appendChild(box);
         }
     }
@@ -130,15 +131,9 @@ optn.addEventListener('click', function(){
         return playGroundReset
     }
 
-
     //Ritorna numero di celle
     return cells
 })
-
-
-
-
-
 
 //Questa funzione genera un numero intero randomico compreso tra min e max
 function randomNumber(min, max){
