@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Inizio Header*/
+header{
+    height: 80px;
+    background-color: darkmagenta;
+}
+
+header::after{
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.logo{
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding-left: 100px;
+    line-height: 80px;
+}
+
+.options{
+    text-align: right;
+    padding-right: 100px;
+    float: left;
+    width: 50%;
+    height: 100%;
+    line-height: 80px;
+}
+
+.optnElement{
+    margin: 0 10px;
+}
+
+main{
+    background-color: darkturquoise;
+    padding: 100px 0;
+}
+
+button{
+    padding: 10px;
+}
+/*Fine Header*/
+
+/*Inizio Main*/
+.container{
+    width: 500px;
+    margin: 50px auto;
+    border: solid black 1px;
+}
+
+#playGroundContainer{
+    height: 500px;
+}
+
+#playGroundContainer::after{
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.box{
+    float: left;
+   
+    border: solid black 1px;
+    text-align: center;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game100{
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+}
+
+.game81{
+    height: calc(100% / 9);
+    width: calc(100% / 9);
+}
+
+.game49{
+    height: calc(100% / 7);
+    width: calc(100% / 7);
+}
+
+.clicked{
+
+}
+
+.bkgBlue{
+    color: white;
+    background-color: rgb(100, 149, 236);
+}
+
+.bkgRed{
+    background-color: red;
+    color: white;
+}
+
+.dNone{
+    display: none;
+}
