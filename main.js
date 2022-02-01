@@ -66,7 +66,9 @@ optn.addEventListener('click', function(){
         }
         return bombList;   
     }
+
     console.log(bombsPosition);
+
     //Questa funzione aquisisce il numero di celle da creare come parametro e inserisce al suo interno il numero
     //Cambia colore di sfondo alla cella quando viene cliccata
     //In base al numero di celle passate come parametro ne modifica la dimensione
@@ -76,25 +78,28 @@ optn.addEventListener('click', function(){
             box.innerText = parseInt(i);
             
             
-        
+            //Assegna background color a seconda se la casella ha la bomba o meno
             box.addEventListener('click', function(){
-                let boxContent = box.innerHTML;
-                
+                let clicks = 0;
+                let boxContent = parseInt(box.innerHTML); 
+
                 console.log(boxContent);
                
-                box.classList.add("clicked");
-
                 if(bombsPosition.includes(boxContent)){
-                    
-                    console.log("TRUE");
+                    box.classList.add("bkgRed");
                 }
-                else if(!bombsPosition.includes(boxContent)){
-                    console.log("FALSE");
+                else{
+                    box.classList.add("bkgBlue");
+                    clicks += 1;
                 }
-               
-                
                 
             });
+
+            function clicked(){
+                box.classList.add("clicked");
+                box.removeEventListener('click', playGroundMaker);
+                
+            }
 
             if(cellsNumber == 100){
                 box.classList.add('game100');
@@ -117,7 +122,6 @@ optn.addEventListener('click', function(){
             
             playGround.appendChild(box);
         }
-
     }
 
     //Questa funzione riporta il plauyground alla condizione di partenza con 0 celle al suo interno
