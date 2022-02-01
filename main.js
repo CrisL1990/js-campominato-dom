@@ -61,12 +61,12 @@ optn.addEventListener('click', function(){
                 i--;
             }
             else{
-                bombList.push(number);
+                bombList.push(parseInt(number));
             }        
         }
         return bombList;   
     }
-
+    console.log(bombsPosition);
     //Questa funzione aquisisce il numero di celle da creare come parametro e inserisce al suo interno il numero
     //Cambia colore di sfondo alla cella quando viene cliccata
     //In base al numero di celle passate come parametro ne modifica la dimensione
@@ -78,10 +78,19 @@ optn.addEventListener('click', function(){
             
         
             box.addEventListener('click', function(){
-                let boxContent = document.getElementsByClassName('clicked')[0];
-                boxContent.innerHTML;
+                let boxContent = box.innerHTML;
+                
                 console.log(boxContent);
+               
                 box.classList.add("clicked");
+
+                if(bombsPosition.includes(boxContent)){
+                    
+                    console.log("TRUE");
+                }
+                else if(!bombsPosition.includes(boxContent)){
+                    console.log("FALSE");
+                }
                
                 
                 
