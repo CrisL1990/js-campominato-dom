@@ -33,23 +33,24 @@ optn.addEventListener('click', function(){
     }
 
     let bombsPosition = bombNumbers();
+    let clickedCells = [];
 
 
     function clicked(){
-        let boxContent = parseInt(this.innerHTML); 
-
+        let boxContent = parseInt(this.innerHTML);
         if(bombsPosition.includes(boxContent)){
-           
-            terminaGioco();
-        
+            terminaGioco();  
+            console.log(clickedCells);
         }
         else{
-            this.classList.add("bkgBlue");        
-        }
-        
+            this.classList.add("bkgBlue");
+            clickedCells.push(boxContent);       
+        } 
         this.removeEventListener('click', clicked);
-        
     }
+
+    
+    
 
     function terminaGioco(){
 
@@ -59,7 +60,13 @@ optn.addEventListener('click', function(){
             if(bombsPosition.includes(parseInt(bomba[i].innerText))){
                 bomba[i].classList.add("bkgRed")
             }
-        }    
+
+            bomba[i].removeEventListener('click', clicked);
+        }
+
+        console.log("Hai effettuato " + clickedCells.length + " tentativi" )
+
+       
         
     }
 
