@@ -16,6 +16,12 @@ header::after{
     clear: both;
 }
 
+main{
+    height: 100vh;
+    background-color: lightgray;
+    
+}
+
 .logo{
     float: left;
     width: 50%;
@@ -37,11 +43,6 @@ header::after{
     margin: 0 10px;
 }
 
-main{
-    background-color: darkturquoise;
-    padding: 100px 0;
-}
-
 button{
     padding: 10px;
 }
@@ -50,12 +51,29 @@ button{
 /*Inizio Main*/
 .container{
     width: 500px;
-    margin: 50px auto;
+    margin: auto;
     border: solid black 1px;
+}
+
+#inizioPartita{
+    height: calc(100vh - 80px);
+    width: 100%;
+    background-color: lightgray;
+    justify-content: center;
+    align-items: center;
+}
+
+.dFlex{
+    display: flex;
+}
+
+#titolo{
+    font-size: 80px;
 }
 
 #playGroundContainer{
     height: 500px;
+    box-shadow: 5px 10px;
 }
 
 #playGroundContainer::after{
@@ -106,4 +124,17 @@ button{
 
 .dNone{
     display: none;
+}
+
+.endGame{
+    text-align: center;
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    padding-top: 520px;
+
+}
+
+#contenitoreCampo{
+    padding-top: 150px;
 }

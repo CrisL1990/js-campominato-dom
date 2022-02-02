@@ -7,10 +7,16 @@ let selection = "Easy";
 //Crea riferimento al button
 let optn = document.getElementById('startGame');
 
+let start = document.getElementById('inizioPartita');
+
 const BOMB_NUMBER = 16;
 
 //Crea event listener del click su pulsante Play
 optn.addEventListener('click', function(){
+
+    playGround.classList.remove('dNone');
+    start.classList.add('dNone');
+    start.classList.remove('dFlex');
 
     //Aquisisce la selezione della difficoltà da html
     selection = document.getElementById("Difficult").value;
@@ -32,13 +38,19 @@ optn.addEventListener('click', function(){
         cells = 49;
     }
 
+    //Si riferisce alla funzione che crea la lista delle bombe
     let bombsPosition = bombNumbers();
+
+    //Contiene i numeri celle celle cliccate prima di trovare la bomba
     let clickedCells = [];
 
-
+    //Gestisce le istruzuini da eseguire al momento del click sulla cella
+    //Poi toglie event listener da cella cliccata
+    //Se la bomba non c'è colora la cella di blu e inserisce il numero della cella in clickedCells
+    //Altrimenti lancia la funzione terminaGioco
     function clicked(){
         let boxContent = parseInt(this.innerHTML);
-        if(bombsPosition.includes(boxContent)){
+        if(bombsPosition.includes(boxContent) || clickedCells.length == cells - BOMB_NUMBER -1){
             terminaGioco();  
             console.log(clickedCells);
         }
@@ -49,9 +61,8 @@ optn.addEventListener('click', function(){
         this.removeEventListener('click', clicked);
     }
 
-    
-    
-
+    //Questa funzione toglie gli event listener da tutte le caselle una volta trovata la bomba
+    //Poi assegna la classe bkgRed alle bombe in modo che lo sfondo sia rosso
     function terminaGioco(){
 
         let bomba = document.getElementsByClassName("box");
@@ -63,9 +74,19 @@ optn.addEventListener('click', function(){
 
             bomba[i].removeEventListener('click', clicked);
         }
+        
+        let tentativi = clickedCells.length;
+        let message = document.createElement("div");
+        message.classList.add("endGame");
 
-        console.log("Hai effettuato " + clickedCells.length + " tentativi" )
-
+        if(clickedCells.length == cells - BOMB_NUMBER -1){
+            message.innerHTML="Hai vinto";
+        }
+        else{
+            message.innerHTML="Hai effettuato " + tentativi + " tentativi";
+        }
+        console.log(message);
+        playGround.appendChild(message)
        
         
     }
